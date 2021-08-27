@@ -25,6 +25,11 @@ export class News extends Component {
             page:1
         }
     }
+
+    capitalize = () => {
+        const str = this.props.category;
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    };
     
     async componentDidMount() {
         let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=ed48ec967f3a4fad82d2481766ad1d5e&page=1&pageSize=${this.props.pageSize}`;
@@ -70,7 +75,7 @@ export class News extends Component {
     render() {
         return (
             <div className="container my-3">
-                <h1 className="text-center mb-3">Top-HeadLines</h1>
+                <h1 className="text-center mb-3">{this.capitalize()} - Headlines</h1>
                 {this.state.loading && <Spinner />}
                 <div className="row">
                     {!this.state.loading && this.state.articles.map((element) => {
