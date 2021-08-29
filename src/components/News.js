@@ -35,16 +35,22 @@ export class News extends Component {
 
     
     async componentDidMount() {
+        this.props.setProgress(10);
         let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pageSize=${this.props.pageSize}`;
         this.setState({ loading: true })
-        
+
         let data = await fetch(url);
+        this.props.setProgress(30);
+
         let parsedData = await data.json();
+        this.props.setProgress(70);
+
         this.setState({
             loading: false,
             articles: parsedData.articles,
             totalResults: parsedData.totalResults
         })
+        this.props.setProgress(100);
 
     
     }
@@ -71,7 +77,6 @@ export class News extends Component {
         return (
             <>
                 <h1 className="text-center my-3">NewsMonkey - Top {this.capitalize()} Headlines</h1>
-                {/* {this.state.loading && <Spinner />} */}
                 
                 <InfiniteScroll
                 dataLength={this.state.articles.length}
@@ -93,10 +98,7 @@ export class News extends Component {
                    
                 </InfiniteScroll>
     
-                {/* <div className="container d-flex justify-content-between">
-                    <button disabled={this.state.page <= 1} className="btn btn-dark btn-sm" onClick={this.handlePrev}>&larr; Previous</button>
-                    <button disabled={this.state.page+1 > Math.ceil(this.state.totalResults / this.props.pageSize) } className="btn btn-dark btn-sm" onClick={this.handleNext}>Next &rarr;</button>
-                </div> */}
+              
             </>
         )
     }
