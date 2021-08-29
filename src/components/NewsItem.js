@@ -14,7 +14,7 @@ export class NewsItem extends Component {
             <div>
               <div className="card my-3">
                  <img src={imageUrl?imageUrl:"https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg"} style={{height: '30vh'}} className="card-img-top" alt="..."/>
-                    <span className="position-absolute top-0 translate-middle badge rounded-pill bg-primary" style={{left:"90%", zIndex:"1"}}>{source}</span>
+                    <span className="position-absolute top-0 translate-middle badge rounded-pill bg-danger" style={{left:"50%", zIndex:"1"}}>{source}</span>
 
                     <div className="card-body">
                         <h5 className="card-title">{ title}...</h5>
