@@ -1,17 +1,14 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-
-export class NewsItem extends Component {
+const NewsItem= (props)=>{
     
-    convertToDate = () => {
-        let d = new Date(this.props.date);
+   const convertToDate = () => {
+        let d = new Date(props.date);
         return d.toGMTString();
     }
   
-
-    render() {
-        let { title, description,imageUrl, newsUrl, author, source} = this.props;
-        return (
+    let { title, description,imageUrl, newsUrl, author, source} = props;
+    return (
             <>
                 <div className="card my-3">
                 <div style={{display: "flex", justifyContent: "flex-end",position: "absolute", right: "0"}}>
@@ -23,13 +20,13 @@ export class NewsItem extends Component {
                     <div className="card-body">
                         <h5 className="card-title">{ title}...</h5>
                         <p className="card-text">{description}...</p>
-                        <p className="card-text"><small className="text-muted">By {author?author:"Unknown"}: {this.convertToDate() }</small>"</p>
+                        <p className="card-text"><small className="text-muted">By {author?author:"Unknown"}: {convertToDate() }</small>"</p>
                         <a rel="noreferrer" href={newsUrl} target="_blank" className="btn btn-sm btn-outline-dark">Read More</a>
                     </div>
                 </div>
             </>
         )
-    }
+    
 }
 
 export default NewsItem
